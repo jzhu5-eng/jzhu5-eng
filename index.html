@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jiayi Zhu — Portfolio</title>
+  <meta name="description" content="A clean, accessible one-page artist portfolio with persistent audio player and easy navigation." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter","ui-sans-serif","system-ui","-apple-system","Segoe UI","Roboto","Helvetica Neue","Arial","Noto Sans","sans-serif"],
+            display: ["Poppins","Inter","ui-sans-serif","system-ui"],
+          },
+          colors: {
+            brand: {50:"#f4f8ff",100:"#e9f1ff",200:"#cfe0ff",300:"#a8c5ff",400:"#7aa4ff",500:"#4a7dff",600:"#345fe6",700:"#2849b4",800:"#203a8e",900:"#1c3174"}
+          },
+          boxShadow: { soft: "0 10px 20px -10px rgba(0,0,0,0.12)" }
+        }
+      },
+      darkMode: 'class'
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    .nav-link { position: relative; }
+    .nav-link.active::after { content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px; background:currentColor; border-radius:2px; }
+  </style>
+</head>
+<body class="bg-white text-slate-800 dark:bg-slate-950 dark:text-slate-100 font-sans">
+  <a href="#home" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 bg-brand-600 text-white px-3 py-2 rounded-md">Skip to content</a>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-slate-900/70 border-b border-slate-200/70 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-brand-600 text-white grid place-items-center font-display text-lg shadow-soft">JZ</div>
+          <div class="hidden sm:block">
+            <p class="text-xs text-slate-500 dark:text-slate-400">Artist • Producer • Performer</p>
+          </div>
+        </div>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-4 lg:gap-6 text-sm">
+          <a class="nav-link hover:text-brand-700 dark:hover:text-brand-300" href="#home">Home</a>
+          <a class="nav-link hover:text-brand-700 dark:hover:text-brand-300" href="#bio">Bio</a>
+          <a class="nav-link hover:text-brand-700 dark:hover:text-brand-300" href="#music">Music</a>
+          <a class="nav-link hover:text-brand-700 dark:hover:text-brand-300" href="#creative">Other Works</a>
+          <a class="nav-link hover:text-brand-700 dark:hover:text-brand-300" href="#photos">Photos</a>
+          <a class="nav-link hover:text-brand-700 dark:hover:text-brand-300" href="#resume">Résumé</a>
+          <a class="nav-link hover:text-brand-700 dark:hover:text-brand-300" href="#plans">Plans</a>
+          <a class="nav-link hover:text-brand-700 dark:hover:text-brand-300" href="#socials">Social</a>
+          <a class="nav-link hover:text-brand-700 dark:hover:text-brand-300" href="#contact">Contact</a>
+        </nav>
+
+        <div class="flex items-center gap-2">
+          <button id="themeToggle" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-700 px-3 py-1.5 text-sm hover:bg-slate-50 dark:hover:bg-slate-800" aria-label="Toggle theme">
+            <span id="themeIcon" aria-hidden="true">🌙</span><span class="hidden sm:inline">Theme</span>
+          </button>
+          <button id="mobileMenuBtn" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 dark:border-slate-700" aria-controls="mobileNav" aria-expanded="false" aria-label="Open menu">☰</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <nav id="mobileNav" class="md:hidden hidden border-t border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 backdrop-blur">
+      <div class="max-w-7xl mx-auto px-4 py-3 grid grid-cols-2 gap-2 text-sm">
+        <a class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" href="#home">Home</a>
+        <a class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" href="#bio">Bio</a>
+        <a class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" href="#music">Music</a>
+        <a class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" href="#creative">Other Works</a>
+        <a class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" href="#photos">Photos</a>
+        <a class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" href="#resume">Résumé</a>
+        <a class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" href="#plans">Plans</a>
+        <a class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" href="#socials">Social</a>
+        <a class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="home" class="relative">
+    <!-- Hero -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-24">
+      <div class="grid lg:grid-cols-2 gap-8 items-center">
+        <div>
+          <h1 class="font-display text-4xl sm:text-5xl font-bold leading-tight">Hello, I'm <span class="text-brand-600 dark:text-brand-400">Jiayi Zhu</span></h1>
+          <p class="mt-4 text-lg text-slate-600 dark:text-slate-300">Singer • Songwriter • Multi-instrumentalist. Based in Boston, United States.</p>
+          <div class="mt-6 flex flex-wrap items-center gap-3">
+            <a href="#music" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-5 py-3 rounded-xl shadow-soft">▶️ Listen to Music</a>
+            <a href="#contact" class="inline-flex items-center gap-2 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 px-5 py-3 rounded-xl">Contact</a>
+            <span class="text-sm text-slate-600 dark:text-slate-300">Email: <a class="underline" href="mailto:jzhu5@berklee.edu">jzhu5@berklee.edu</a></span>
+          </div>
+          <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">Tip: the mini player at the bottom keeps music playing while you browse.</p>
+        </div>
+        <div class="relative">
+          <img src="./erickzhu.JPG" alt="Portrait of Jiayi Zhu" class="w-full h-[420px] object-cover rounded-3xl shadow-soft">
+        </div>
+      </div>
+    </section>
+
+    <!-- Bio -->
+    <section id="bio" class="py-20 bg-slate-50 dark:bg-slate-900/40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-display text-3xl font-bold mb-6">Bio</h2>
+        <div class="grid lg:grid-cols-3 gap-8">
+          <div class="lg:col-span-2 space-y-4 text-slate-700 dark:text-slate-300">
+            <p>Jiayi Zhu is a music producer and emerging entrepreneur from Nantong, a mid-sized city near Shanghai, China. His musical journey began in primary school inspired by Chinese pop icon Jay Chou and later expanded with a deep love for R&amp;B and hip-hop, especially Drake. He started with saxophone and acoustic guitar before diving into music production in high school, driven by a fascination with how modern music is made.</p>
+            <p>During high school, Jiayi worked with Berklee professor Jason Stokes as part of a teaching tour organized by his study abroad agency in Shanghai, where he served as an assistant. He also gained media experience through an internship at his local city television station. Jiayi was later accepted into Berklee College of Music with a scholarship, where he is majoring in Professional Music with a focus on music production and music business. Now approaching graduation, he is building a career that blends creativity and business, with aspirations to become a forward-thinking leader in the global music industry.</p>
+          </div>
+          <aside class="space-y-3">
+            <div class="p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
+              <p class="text-sm uppercase tracking-wide text-slate-500 dark:text-slate-400 mb-2">Quick Links</p>
+              <ul class="space-y-2 text-sm underline">
+                <li><a href="#resume">Résumé (PDF)</a></li>
+                <li><a href="#socials">Socials</a></li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Music -->
+    <section id="music" class="py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-end justify-between gap-4 mb-6">
+          <h2 class="font-display text-3xl font-bold">Music</h2>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4" id="trackList">
+          <!-- Track 1 -->
+          <button class="trackCard group text-left p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800" data-src="./all%20i%20want%20is%20u(demo).mp3" data-title="All I Want Is U (demo)" data-artist="Jiayi Zhu" data-cover="./albumcover1.JPG">
+            <div class="flex items-center gap-3">
+              <img src="./albumcover1.JPG" alt="Cover art for All I Want Is U (demo)" class="w-12 h-12 rounded-xl object-cover">
+              <div>
+                <p class="font-medium">All I Want Is U (demo)</p>
+                <p class="text-xs text-slate-500">Jiayi Zhu</p>
+              </div>
+            </div>
+          </button>
+          <!-- Track 2 -->
+          <button class="trackCard group text-left p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800" data-src="./that%20could%20only%20mean%20one%20thing.mp3" data-title="that could only mean one thing" data-artist="Jiayi Zhu" data-cover="./albumcover2.JPG">
+            <div class="flex items-center gap-3">
+              <img src="./albumcover2.JPG" alt="Cover art for that could only mean one thing" class="w-12 h-12 rounded-xl object-cover">
+              <div>
+                <p class="font-medium">that could only mean one thing</p>
+                <p class="text-xs text-slate-500">Jiayi Zhu</p>
+              </div>
+            </div>
+          </button>
+          <!-- Track 3 -->
+          <button class="trackCard group text-left p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800" data-src="./she%20left(demo).m4a" data-title="she left (demo)" data-artist="Jiayi Zhu" data-cover="./albumcover3.JPG">
+            <div class="flex items-center gap-3">
+              <img src="./albumcover3.JPG" alt="Cover art for she left (demo)" class="w-12 h-12 rounded-xl object-cover">
+              <div>
+                <p class="font-medium">she left (demo)</p>
+                <p class="text-xs text-slate-500">Jiayi Zhu</p>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Social Media -->
+    <section id="socials" class="py-20 bg-slate-50 dark:bg-slate-900/40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-display text-3xl font-bold mb-6">Social Media</h2>
+        <p class="max-w-2xl text-slate-600 dark:text-slate-300 mb-4">
+          Erick is a solo artist and music producer on NetEase Music — the largest music platform in China for creator artists.
+          Follow for behind-the-scenes, demos, and release updates.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a class="px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800" href="https://www.instagram.com/kidoffcrown/?utm_source=qr" rel="me noopener" target="_blank">Instagram</a>
+          <a class="px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800" href="https://music.163.com/#/artist?id=33702591" target="_blank" rel="noopener">NetEase Music</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Other Works -->
+    <section id="creative" class="py-20 bg-slate-50 dark:bg-slate-900/40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-display text-3xl font-bold mb-6">Other Works</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <article class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 hover:shadow-soft transition">
+            <h3 class="font-semibold">Business Plan: Plus1 Overseas Study</h3>
+            <p class="text-sm text-slate-600 dark:text-slate-300 mt-2">Startup concept and operations plan (PDF).</p>
+            <a class="text-sm underline mt-3 inline-block" href="./Plus1_Overseas_Study_Business_Plan.pdf" target="_blank" rel="noopener">Open PDF</a>
+          </article>
+          <!-- 其余两张卡片已按要求移除 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Photos: 3 columns x 2 rows, slightly smaller -->
+    <section id="photos" class="py-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-display text-3xl font-bold mb-6">Photos</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <img class="w-full rounded-2xl aspect-[4/3] object-cover" src="./1.JPG" alt="Photo 1">
+          <img class="w-full rounded-2xl aspect-[4/3] object-cover" src="./2.JPG" alt="Photo 2">
+          <img class="w-full rounded-2xl aspect-[4/3] object-cover" src="./3.JPG" alt="Photo 3">
+          <img class="w-full rounded-2xl aspect-[4/3] object-cover" src="./4.JPG" alt="Photo 4">
+          <img class="w-full rounded-2xl aspect-[4/3] object-cover" src="./5.JPG" alt="Photo 5">
+          <img class="w-full rounded-2xl aspect-[4/3] object-cover" src="./6.JPG" alt="Photo 6">
+        </div>
+      </div>
+    </section>
+
+    <!-- Résumé -->
+    <section id="resume" class="py-20 bg-slate-50 dark:bg-slate-900/40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-display text-3xl font-bold mb-6">Résumé</h2>
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+          <p class="text-slate-600 dark:text-slate-300">Keep a clean, single-page PDF. Link it below and optionally embed a preview.</p>
+          <a href="./resume_erick.pdf" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl">Download PDF</a>
+        </div>
+        <iframe class="w-full h-[560px] rounded-2xl border border-slate-200 dark:border-slate-800" src="./resume_erick.pdf" title="Resume PDF"></iframe>
+      </div>
+    </section>
+
+    <!-- Plans -->
+    <section id="plans" class="py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-display text-3xl font-bold mb-6">Career & Academic Plans</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800">
+            <h3 class="font-semibold">Academic Plan</h3>
+            <p class="mt-2 text-slate-700 dark:text-slate-300">
+              My academic plan is to complete my studies at Berklee with a strong focus on both music performance and music business.
+              I want to continue developing my skills in theory, composition, and production while also strengthening my knowledge of
+              entrepreneurship and independent career management.
+            </p>
+          </div>
+          <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800">
+            <h3 class="font-semibold">Career Plan</h3>
+            <p class="mt-2 text-slate-700 dark:text-slate-300">
+              My career plan is two-fold: first, to build my identity as an independent musician through original projects, collaborations,
+              and performances; second, to launch and grow my overseas study agency Plus One, which will help students—especially those
+              interested in music—find affordable, high-quality opportunities abroad. By combining what I’ve learned at Berklee with my
+              own international experiences, I plan to create a career that balances artistry, education, and entrepreneurship.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact (email only) -->
+    <section id="contact" class="py-20">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-display text-3xl font-bold mb-6">Contact</h2>
+        <p class="text-slate-700 dark:text-slate-300 text-lg">Email me at <a class="underline" href="mailto:jzhu5@berklee.edu">jzhu5@berklee.edu</a></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Mini Audio Player -->
+  <div id="player" class="fixed bottom-4 left-1/2 -translate-x-1/2 w-[min(90vw,720px)] rounded-2xl shadow-soft border border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur p-3 z-50">
+    <div class="flex items-center gap-3">
+      <button id="prevBtn" class="w-10 h-10 rounded-xl border border-slate-200 dark:border-slate-700" aria-label="Previous">⏮️</button>
+      <button id="playBtn" class="w-12 h-12 rounded-xl bg-brand-600 text-white" aria-label="Play/Pause">▶️</button>
+      <button id="nextBtn" class="w-10 h-10 rounded-xl border border-slate-200 dark:border-slate-700" aria-label="Next">⏭️</button>
+      <img id="nowCover" src="" alt="Current track cover" class="hidden sm:block w-12 h-12 rounded-xl object-cover">
+      <div class="flex-1 min-w-0">
+        <p id="nowTitle" class="truncate font-medium">No track loaded</p>
+        <p id="nowArtist" class="truncate text-xs text-slate-500">—</p>
+        <input id="seek" type="range" min="0" max="100" value="0" class="w-full mt-1">
+      </div>
+      <div class="flex items-center gap-2">
+        <input id="volume" type="range" min="0" max="1" step="0.01" value="0.7">
+      </div>
+      <audio id="audio" preload="none"></audio>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-24 border-t border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-sm text-slate-500 dark:text-slate-400 flex items-center justify-between">
+      <p>© <span id="year"></span> Jiayi Zhu. All rights reserved.</p>
+      <a href="#home" class="underline">Back to top</a>
+    </div>
+  </footer>
+
+  <script>
+    // Theme toggle
+    const themeBtn = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    function setTheme(mode){
+      if(mode === 'dark'){ document.documentElement.classList.add('dark'); localStorage.setItem('theme','dark'); themeIcon.textContent='☀️'; }
+      else { document.documentElement.classList.remove('dark'); localStorage.setItem('theme','light'); themeIcon.textContent='🌙'; }
+    }
+    (function(){
+      const saved = localStorage.getItem('theme');
+      if(saved){ setTheme(saved); }
+      else { setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
+    })();
+    themeBtn.addEventListener('click', ()=>{
+      const dark = document.documentElement.classList.contains('dark');
+      setTheme(dark ? 'light' : 'dark');
+    });
+
+    // Mobile nav toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    mobileBtn.addEventListener('click', () => {
+      const expanded = mobileBtn.getAttribute('aria-expanded') === 'true';
+      mobileBtn.setAttribute('aria-expanded', String(!expanded));
+      mobileNav.classList.toggle('hidden');
+    });
+    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', ()=>{
+      mobileNav.classList.add('hidden');
+      mobileBtn.setAttribute('aria-expanded','false');
+    }));
+
+    // Active section highlight
+    const links = Array.from(document.querySelectorAll('header nav a[href^="#"]'));
+    const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry => {
+        const id = '#' + entry.target.id;
+        const link = links.find(a => a.getAttribute('href') === id);
+        if(link){ link.classList.toggle('active', entry.isIntersecting && entry.intersectionRatio > 0.5); }
+      });
+    }, { threshold: [0.5] });
+    sections.forEach(sec => observer.observe(sec));
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mini audio player
+    const audio = document.getElementById('audio');
+    const playBtn = document.getElementById('playBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const nowTitle = document.getElementById('nowTitle');
+    const nowArtist = document.getElementById('nowArtist');
+    const nowCover = document.getElementById('nowCover');
+    const seek = document.getElementById('seek');
+    const volume = document.getElementById('volume');
+
+    const playlist = [];
+    const trackButtons = document.querySelectorAll('.trackCard');
+    trackButtons.forEach(btn => {
+      playlist.push({ src: btn.dataset.src, title: btn.dataset.title, artist: btn.dataset.artist, cover: btn.dataset.cover });
+      btn.addEventListener('click', () => {
+        currentIndex = playlist.findIndex(t => t.src === btn.dataset.src);
+        loadTrack(currentIndex, true);
+      });
+    });
+
+    let currentIndex = 0;
+    function loadTrack(index, autoplay=false){
+      if(index < 0 || index >= playlist.length) return;
+      const track = playlist[index];
+      audio.src = track.src;
+      nowTitle.textContent = track.title || 'Untitled';
+      nowArtist.textContent = track.artist || '';
+      if (nowCover) {
+        nowCover.src = track.cover || './erickzhu.JPG';
+        nowCover.alt = (track.title || 'Track') + ' cover';
+        nowCover.classList.remove('hidden');
+      }
+      if(autoplay){ audio.play().catch(()=>{}); }
+      updatePlayBtn();
+    }
+
+    function updatePlayBtn(){
+      playBtn.textContent = audio.paused ? '▶️' : '⏸️';
+    }
+
+    playBtn.addEventListener('click', ()=>{ audio.paused ? audio.play() : audio.pause(); });
+    prevBtn.addEventListener('click', ()=>{
+      currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+      loadTrack(currentIndex, true);
+    });
+    nextBtn.addEventListener('click', ()=>{
+      currentIndex = (currentIndex + 1) % playlist.length;
+      loadTrack(currentIndex, true);
+    });
+
+    audio.addEventListener('play', updatePlayBtn);
+    audio.addEventListener('pause', updatePlayBtn);
+    audio.addEventListener('timeupdate', ()=>{
+      seek.value = (audio.currentTime / (audio.duration || 1)) * 100;
+    });
+    seek.addEventListener('input', ()=>{
+      audio.currentTime = (seek.value / 100) * (audio.duration || 0);
+    });
+
+    volume.addEventListener('input', ()=>{
+      audio.volume = volume.value;
+      localStorage.setItem('vol', volume.value);
+    });
+    const savedVol = localStorage.getItem('vol');
+    if(savedVol){ volume.value = savedVol; audio.volume = savedVol; }
+
+    // Load first track without autoplay
+    if(playlist.length) loadTrack(0, false);
+  </script>
+</body>
+</html>
